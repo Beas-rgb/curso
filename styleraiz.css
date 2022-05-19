@@ -1,0 +1,24 @@
+body {
+  margin: 20px;
+  line-height: 26px;
+}
+
+
+
+.item-menu{
+  cursor: pointer;
+  background-color: #f1f1f1;
+  border: 1px solid #d4d4d4;
+  border-radius: 7px;
+
+  margin: 4px;
+  padding: 0px 10px;
+}
+
+.item-menu:hover{
+  background-color: white;
+}
+
+ul {
+  width: 100px;
+}
