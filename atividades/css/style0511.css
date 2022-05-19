@@ -1,0 +1,17 @@
+body{
+  font: 100% "Lucina Sans", verdana;
+  margin: 20px;
+  line-height: 26px;
+}
+
+#top h1, p{
+  margin: 1px;
+  padding: 0;
+}
+#green{
+  color: green;
+}
+
+#red{
+  color: red;
+}
