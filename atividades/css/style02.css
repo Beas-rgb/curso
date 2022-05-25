@@ -74,6 +74,6 @@ a{
   text-decoration: none;
 }
 
-a:-webkit-any-link{
+a:hover{
   text-decoration: underline;
 }
