@@ -37,7 +37,7 @@ h1{
 }
 
 .item-menu {
-  background-color: #04aa6d;
+  background-color: #d14836;
   color: white;
   list-style-type: none;
   cursor: pointer;
@@ -49,38 +49,39 @@ h1{
   border-radius: 4px;
 }
 
-.item-menu:hover{
-  background-color: #555555;
+.item-menu:hover {
+  background-color: white;
+  color: #d14836;
 }
 
-.item-menu:nth-child(5){
-  background-color: #d14836;
+.item-menu:nth-child(5) {
+  background-color: white;
+  color: #d14836;
 }
-
-#menubar{
+#menubar {
   overflow: auto;
 }
 
-ul{
+ul {
   padding: 0;
 }
 
-#sidebar{
+#sidebar {
   background-color: #f6dad7;
   padding: 10px;
   color: #d14836;
 }
 
-a{
+a {
   color: rgb(253, 253, 70);
   text-decoration: none;
 }
 
-a:hover{
+a:hover {
   text-decoration: underline;
 }
 
-#bottom{
+#bottom {
   text-align: center;
   font-size: 70%;
   background-color: #f1f1f1;
