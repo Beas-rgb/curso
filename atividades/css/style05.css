@@ -50,7 +50,11 @@ h1{
 }
 
 .item-menu:hover{
-  background-color: black;
+  background-color: #555555;
+}
+
+.item-menu:nth-child(5){
+  background-color: #d14836;
 }
 
 #menubar{
