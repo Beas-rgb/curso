@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logíca de Programação de JavaScript</title>
+</head>
+<body>
+  <h1 id="titulo">Logíca de Programação de JavaScript</h1>
+  
+  <ul>
+    <li>Faze um óla Mundo.. <br>
+        (é um peque programa que apenas tem a finalidade de mostrar uma mns)</li>
+    <li>I/O .. E/S Input/Output Entrada/Saída (de dados) <br>
+        Declaração de <b>Variaveis tipos [inteiro, decimal, texto, boolea]</b>    
+    </li>
+      <li>Funções (Parte do código que executamos quando deseja)</li>
+      <li>Estrutura de condição (if,else,case)</li>
+      <li>Laços de repetição</li>
+      <li>Array (Listas)</li>
+      <li>JSON</li>
+  </ul>
+
+  <script>
+    //alert("Óla mundo!");
+    document.write("Óla mundo!");
+    console.log("Óla mundo!");
+    //document.getElementById("titulo").innerHTML = "Óla Mundo";
+
+    function changeTitle() {
+      document.getElementById("titulo").innerHTML = "Titulo modificado via <b>FUNCTION</b>"
+    }
+  </script>
+
+  <br>
+
+  <button onclick="alert('Eu falei pra não clicar aqui')">Alerta não clique aqui!!</button>
+  
+  <br>
+  
+  <button onclick="changeTitle()">Mudar o Título</button>
+
+  <br>
+
+  <button onclick="imputName()">Digitar o nome</button>
+  
+  <br>
+  
+  <button onclick="personalizeTitle()">personalizar título</button>
+
+  <br>
+  
+  <script>
+    document.write("Operações JS");
+    let n1 = 4;
+    document.write(n1);
+
+    function imputName(params) {
+      let nome = prompt("Digite o seu nome!");
+      alert("O nome digitado foi: "+nome);
+    }
+
+    //desafio
+    function personalizeTitle() {
+      let newTitle = prompt('Digite o novo título');
+      document.getElementById("titulo").innerHTML = newTitle;
+    }
+
+
+
+ 
+
+
+
+    //fase um novo botão com o nome "personalizar titulo"
+    //criar uma função personalizar uma função
+    //na função tem que ter uma variável que recebe o retorno do promt
+    //modificar o título pelo getElementById
+  </script>
+</body>
+</html>
