@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 08.06 p3</title>
+</head>
+<body>
+  <label for="">Valor final</label>
+  <input type="text" id="valor">
+  <br>
+  <label for="">%Desconto</label>
+  <input type="text" id="desconto">
+  <br>
+  <button onclick="calcular()">Calcular</button>
+  <span id="resultado">
+
+  </span>
+
+  <script>
+    function calcular() {
+      let valorTotal = document.querySelector("#valor").value; 
+      let percentualDesconto = document.querySelector("#desconto").value; 
+      let valorDoDesconto = (valorTotal/100) * percentualDesconto;
+      let valorFinal = valorTotal - valorDoDesconto;
+      let mensagem = `Valor total = ${valorTotal} <br>
+                      Percentual de desconto = ${percentualDesconto} <br> 
+                      Valor do Desconto = ${valorDoDesconto} <br> 
+                      valor final = ${valorFinal}
+                      `;
+      
+      document.querySelector("#resultado").innerHTML = mensagem;
+
+    }
+  </script>
+</body>
+</html>
