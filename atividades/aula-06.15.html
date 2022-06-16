@@ -60,7 +60,12 @@
 
 <script>
 
-  let corpoTabela = '<tr><td>Limpa a casa</td></tr><tr><td>Lavar os Pratos</td></tr><tr><td>Trocar Fralda</td></tr><tr><td>Estudar HTML, CSS e JS</td></tr>';
+  let corpoTabela = localStorage.getItem('corpoTabela');
+
+  if (corpoTabela == null) {
+    corpoTabela = '<tr><td>Nenhuma tarefa registrada</td></tr>';
+    localStorage.setItem('corpoTabela', corpoTabela);
+  }
   document.querySelector('tbody').innerHTML = corpoTabela;
   onclickNaslinhas();
 
@@ -69,6 +74,10 @@
   function incluirTarefa(){
     let linha = document.getElementById('linha').value;
     let tarefa = document.getElementById('tarefa').value;
+    if(tarefa.length <= 5){
+      alert('A tarefa deve ter mais de 5 caracteres.');
+      return;
+    }
 
     if(linha != ''){
       document.getElementsByTagName('td')[linha].innerHTML = tarefa;
@@ -81,6 +90,7 @@
     
     novo();
     onclickNaslinhas();
+    localStorage.setItem('corpoTabela', document.querySelector('tbody').innerHTML);
   }
 
   function editar(tarefa, linha) {
@@ -118,6 +128,7 @@
     onclickNaslinhas();
     novo();
     corpoTabela = document.querySelector('tbody').innerHTML;
+    localStorage.setItem('corpoTabela', corpoTabela);
     }
     
   }
