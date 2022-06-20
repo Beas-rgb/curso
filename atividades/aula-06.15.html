@@ -102,7 +102,7 @@
   function onclickNaslinhas(){
     qtLinhas = document.getElementsByTagName('td').length;
     for (i = 0; i < qtLinhas; i++){
-    let j = 1;
+    let j = i;
     document.getElementsByTagName('td')[i].addEventListener('click', function () { editar(this.innerHTML, j) });
   }
   }
