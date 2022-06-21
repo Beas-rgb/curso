@@ -173,28 +173,29 @@
         
 
         function questao04() {
-          let salario = document.getElementById("salario").value;
+          let salario = document.getElementById('salario').value;
           let percentual = 0;
 
-          if (salario > 0 && salario <= 400){
+          if(salario > 0 && salario <= 400){
             percentual = 15;
           }
-          if(salario >= 400 && salario <= 800){
+          if(salario > 400 && salario <= 800){
             percentual = 12;
           }
-          if(salario >= 800 && salario <= 1200){
+          if(salario > 800 && salario <= 1200){
             percentual = 10;
           }
-          if(salario >= 1200 && salario <= 2000){
+          if(salario > 1200 && salario <= 2000){
             percentual = 7;
           }
           if(salario > 2000){
             percentual = 4;
           }
 
-          let ganho =  (salario/100) * percentual;
+          let ganho = (salario/100) * percentual;
           let novoSalario = Number(salario) + ganho;
-          document.getElementById().innerHTML = `Novo salario: ${novoSalario}, Ganho: ${ganho}, Percentual: ${percentual}%`
+
+          document.getElementById("resultado04").innerHTML = `Resultado: Novo salario: ${novoSalario}, Ganho: ${ganho}, Percentual: ${percentual} %`;
         }
 
         function questao05() {
