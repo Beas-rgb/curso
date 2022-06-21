@@ -111,7 +111,7 @@
             <label for="">Valor Hora</label>
             <input type="text" id="valorHora">
             <label for="">Total de Horas Trabalhado</label>
-            <input type="text" id="totaldeHoras">
+            <input type="text" id="totalHoras">
             <input type="button" onclick="questao06()" value="Calcular">
         </div>
         <div class="questao">
@@ -220,14 +220,14 @@
           document.getElementById("resultado").innerHTML = `Resultado: Imposto ${resultado .toFixed(2)}`;
         }
 
-        function questao06(){
-          let valorHora = document.getElementById("valorHora").value;
-          let totaldeHoras = document.getElementById("totaldeHoras").value;
-          let nome = document.getElementById("nome").value;
+        function questao06() {
+          let valorHora = document.getElementById('valorHora').value;
+          let totalHoras = document.getElementById('totalHoras').value;
+          let nome = document.getElementById('nome').value;
 
-          let resultado = valorHora * totaldeHoras;
-
-          document.getElementById("valorHora").innerHTML = `O funcionario ${nome} vai receber ${resultado}.`
+          let resultado = valorHora * totalHoras;
+        
+          document.getElementById("resultado06").innerHTML = `Resultado: O funcionario ${nome} vai receber ${resultado}.`
         }
 
         function questao07() {
