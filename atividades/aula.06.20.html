@@ -149,20 +149,26 @@
 
         function questao03(){
           let num = document.getElementById("num03").value;
-          resultado = "";
+          resultado = "no intervalo";
           if(num > 0 && num <= 25){
-            resultado = '[0,25]'
-          }
+            resultado += '[0,25]'
+          } else
+
           if(num > 25 && num <= 50){
-            resultado = '[25,50]'
-          }
+            resultado += '[25,50]'
+          } else
+
           if(num > 50 && num <= 75){
-            resultado = '[50,75]'
+            resultado += '[50,75]'
+          } else
+
+          if(num > 75 && num <= 100){
+            resultado += '[75,100]'
+          } else{
+            resultado = 'Fora do intevalo' 
           }
-          if(num > 75 && num <=100){
-            resultado = '[75,100]'
-          }
-          document.getElementById('resultado03').innerHTML = `Resultado: O valor digita esta no intervalo ${resultado}`;
+
+          document.getElementById('resultado03').innerHTML = `Resultado: O valor digita esta <b>${resultado}</b>`;
         }
         
 
