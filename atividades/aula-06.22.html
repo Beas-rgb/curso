@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de quiz</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+  <style>
+    h1{
+      text-align: center;
+    }
+    h2{
+      background-color: aquamarine;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+    }
+    h3{
+      background-color: rgb(233, 233, 233);
+      border-radius: 15px;
+      padding: 15px;
+    }
+    h3:hover{
+      background-color: #cccccc;
+      cursor: pointer;
+    }
+    h3 span{
+      font-weight: bolder;
+    }
+
+  </style>
+  
+  <div class="container">
+    <h1>Quiz Aleatorio</h1>
+    <h2>
+      Pergunta?
+    </h2>
+    <h3>
+      <span>A</span>
+       Resposta
+    </h3>
+    <h3>
+      <span>B</span>
+       Resposta
+    </h3>
+    <h3>
+      <span>C</span>
+       Resposta
+    </h3>
+    <h3>
+      <span>D</span>
+       Resposta
+    </h3>
+
+    <div class="btn btn-primary" onclick="next()">
+      Next
+    </div>
+
+    <script>
+      function verficarResposta(i) {
+        if(quiz.ponto >= 0) return;
+
+        document.querySelectorAll('h3')[i].style.backgroundColor = '#ff5555';
+        document.querySelectorAll('h3')[quiz.correta].style.backgroundColor = '#56c856';
+
+        if (i == quiz.correta) {
+          quiz.ponto = 1;
+        } else {
+          quiz.ponto = 0;
+        }
+      }
+
+      let lsPertgunta = [
+        {
+           pergunta: "Qual foi o ultimo ano que o Brasil ganhou a copa?",
+           respostas: ["1970","2002","1962","1994"],
+           correta: 1
+        },
+        {
+           pergunta: "Qual o maior planeta do sistema solar?",
+           respostas: ["Netuno","Saturno","Urano","Júpiter"],
+           correta: 3
+        },
+        {
+           pergunta: "Qual o nome do último presidente dos Estados Unidos?",
+           respostas: ["George Bush","Donald Trump","Dwight Eisenhower","Barack Obama"],
+           correta: 0
+        },
+        {
+           pergunta: "Qual o maior prédio do mundo?",
+           respostas: ["Shanghai Tower","Warisan Merdeka Tower","Burj Khalifa","Goldin Finance 117"],
+           correta: 2
+        }
+      ];
+      
+      let quiz = {};
+      function carregarQuiz(nPergunta){
+        quiz = lsPertgunta[nPergunta];
+        document.querySelector('h2').innerHTML = quiz.pergunta;
+          for (let i = 0; i < 4; i++ ){
+            document.querySelectorAll('h3')[i].style.backgroundColor = '#cccccc';
+            document.querySelectorAll('h3')[i].innerHTML = quiz.respostas[i];
+            let x = i;
+            document.querySelectorAll('h3')[i].addEventListener( 
+              'click', () => {verficarResposta(x) });
+          }
+      }
+      
+
+      let quizAtual = 0;
+      carregarQuiz(quizAtual);
+      function next() {
+        if(quizAtual == lsPertgunta.length-1) return;
+        if(quiz.ponto == undefined){
+          alert("Antes de ir para próxima pergunta responta essa!");
+          return;
+        }
+        carregarQuiz(++quizAtual);
+      }
+
+
+        //document.querySelectorAll('h3')[1].innerHTML = quiz.respostas[1];
+        //document.querySelectorAll('h3')[2].innerHTML = quiz.respostas[2];
+        //document.querySelectorAll('h3')[3].innerHTML = quiz.respostas[3];
+    </script>
+
+</div>
+</body>
+</html>

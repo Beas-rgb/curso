@@ -97,7 +97,7 @@
             <h1>Questã 05:<span> Imposto de Renda <a
                         href="https://www.urionlinejudge.com.br/judge/pt/problems/view/1051"
                         target="_blank">detalhar</a></span></h1>
-            <p id="resultado">Resultado: Imposto xxxxx</p>
+            <p id="resultado05">Resultado: Imposto xxxxx</p>
             <label for="">Renda:</label>
             <input type="text" id="renda">
             <input type="button" onclick="questao05()" value="Calcular">
@@ -133,7 +133,7 @@
 
             let resultado = ((a*2) + (b*3) + (c*5))/10; 
             
-            document.getElementById('resultado01').innerHTML = `Resultado: A média das 3 notas foi ${resultado}.`;
+            document.getElementById('resultado01').innerHTML = `Resultado: A média das 3 notas foi ${resultado.toFixed(2)}.`;
         }
 
         function questao02() {
@@ -195,13 +195,14 @@
           let ganho = (salario/100) * percentual;
           let novoSalario = Number(salario) + ganho;
 
-          document.getElementById("resultado04").innerHTML = `Resultado: Novo salario: ${novoSalario}, Ganho: ${ganho}, Percentual: ${percentual} %`;
+          document.getElementById("resultado04").innerHTML = `Resultado: Novo salario: ${novoSalario.toFixed(2)}, Ganho: ${ganho.toFixed(2)}, Percentual: ${percentual} %`;
         }
 
         function questao05() {
           let renda = document.getElementById("renda").value;
+          let resultado ;
           if(renda > 0 && renda <= 2000){
-            resultado = 'insento';
+            resultado = 'Isento';
           }
           if(renda > 2000 && renda <= 3000){
             renda = renda - 2000;
@@ -217,7 +218,7 @@
             resultado = (renda/100) * 28;
             resultado += 350;
           }
-          document.getElementById("resultado").innerHTML = `Resultado: Imposto ${resultado .toFixed(2)}`;
+          document.getElementById("resultado05").innerHTML = `Resultado: Imposto ${resultado.toFixed(2)}.`;
         }
 
         function questao06() {
@@ -227,15 +228,15 @@
 
           let resultado = valorHora * totalHoras;
         
-          document.getElementById("resultado06").innerHTML = `Resultado: O funcionario ${nome} vai receber ${resultado}.`
+          document.getElementById("resultado06").innerHTML = `Resultado: O funcionario ${nome} vai receber ${resultado.toFixed(2)}.`
         }
 
         function questao07() {
-          let combustível = document.getElementById("combustível").value;
-          let distancia = document.getElementById("distancia").value;
+          let combustível = document.getElementById('combustível').value;
+          let distancia = document.getElementById('distancia').value;
           let resultado = distancia/combustível;
 
-          document.getElementById("resultado07").innerHTML = `Resultado: O automóvel fez o consumo médio de xxx.`
+          document.getElementById("resultado07").innerHTML = `Resultado: O automóvel fez o consumo médio de ${resultado.toFixed(2)}.`;
         }
     </script>
 </body>
