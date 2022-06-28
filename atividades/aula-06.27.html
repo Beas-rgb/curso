@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Perguntas do Quiz</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+  <style>
+    h2{
+      text-align: center;
+    }
+  </style>
+  
+  <div class="container">
+    <h2>Horizontal form</h2>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pergunta">Pergunta:</label>
+        <div class="col-sm-10">
+          <input type="pergunta" class="form-control" id="pergunta" placeholder="" name="pergunta" value="Contra qual clube Pelé marcou seu milésimo gol?">
+        </div>
+      </div> 
+
+    <form class="form-horizontal">
+
+
+      <form class="form-horizontal" action="/action_page.php">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="opecao01">Opção02:</label>
+          <div class="col-sm-10">
+            <input type="opecao01" class="form-control" id="opecao01" placeholder="" value="Cruzeiro">
+          </div>
+        </div> 
+
+    <form class="form-horizontal" action="/action_page.php">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="opecao02">Opção02:</label>
+        <div class="col-sm-10">
+          <input type="opecao02" class="form-control" id="opecao02" placeholder="" valeu="Vasco">
+        </div>
+      </div> 
+
+    <form class="form-horizontal" action="/action_page.php">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="opecao03">Opção03:</label>
+        <div class="col-sm-10">
+          <input type="opecao03" class="form-control" id="opecao03" placeholder="" value="Corinthians">
+        </div>
+      </div> 
+
+    <form class="form-horizontal" action="/action_page.php">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="opecao0">Opção04:</label>
+        <div class="col-sm-10">
+          <input type="opecao04" class="form-control" id="opecao04" placeholder="" value="Vasco">
+        </div>
+      </div> 
+ 
+      <div class="from-group">
+        <label class="control-label col-sm-2" for="">Opção Correta:</label>
+        <div class="col-sm-10">
+          <label class="radio-inline">
+            <input type="radio" name="opecaoCorreta" value="1" checked>Opção 1
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="opecaoCorreta" value="2">Opção 2
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="opecaoCorreta" value="3">Opção 3
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="opecaoCorreta" value="4">Opção 4
+          </label>
+        </div>
+      </div>
+      
+
+
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" onclick="gravar()" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function gravar(){
+      let lsInput = document.querySelectorAll('input');
+      let quiz = {respostas:[]};
+        if(i in lsInput){
+          if(i == 0){
+            quiz.pergunta = lsInput[i].value;
+         }
+         if(i >= 1 && i <= 4){
+          quiz.respostas[i-1] = lsInput[i].value;
+         }
+         if(i >= 5 && i <= 8){
+          if(lsInput[i].checked){
+            quiz.correta = i-5;
+          }
+         }
+      }
+      let baseQuiz = localStorage.getItem('baseQuiz');
+      baseQuiz = JSON.parse(baseQuiz);
+      baseQuiz.push(quiz);
+      localStorage.setItem('baseQuiz' , JSON.stringify(baseQuiz));
+    }
+
+  </script>
+
+</body>
+</html>
