@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz A</title>
+  <title>Quiz Aleatorio</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -31,6 +31,9 @@
     h3 span{
       font-weight: bolder;
     }
+    #next , #reiniciar{
+      display: block;
+    }
   </style>
   
   <div class="container">
@@ -54,13 +57,19 @@
       <span>D</span>
       Resposta
     </h3>
-    <div class="btn btn-primary" onclick="next()">
+    <div class="btn btn-primary" id="next" onclick="next()">
       Next
+    </div>
+    <div class="btn btn-primary" id="reiniciar" onclick="reiniciar()">
+      Reiniciar
     </div>
 
 
     <script>
-
+      let placar = {
+        acertos : 0,
+        erros : 0
+      }
 
       function verificarResposta(i) {
         if (quiz.ponto >= 0) return;
@@ -70,8 +79,10 @@
 
         if(i == quiz.correta){
           quiz.ponto = 1;
+          placar.acertos += 1
         } else {
           quiz.ponto = 0;
+          placar.erros += 1
         }
       }
 
@@ -123,13 +134,39 @@
     let quizAtual = 0;
     carregarQuiz(quizAtual)
     function next(){
-      if(quiz.ponto = undefined) {
-        alert("Antes de ir para próxima pergunta responda essa!");
+      if(quiz.ponto == undefined) {
+        alert("Antes de ir para o próxima pergunta responda essa!");
+        return;
       }
-      if(quizAtual == lsPertgunta.length-1) return;
+      if(quizAtual == lsPertgunta.length - 1){
+        return;
+      } 
       carregarQuiz(++quizAtual);
     }
 
+    function fimQuiz(){
+      document.querySelector('h2').innerHTML = 'resultado do Quiz'
+      document.querySelectorAll('h3')[0].innerHTML = `Acertos: ${placar.acertos}`;
+      document.querySelectorAll('h3')[1].innerHTML = `Erros: ${placar.erros}`;
+
+      document.querySelectorAll('h3')[0].style.backgroundColor = '#56c856';
+      document.querySelectorAll('h3')[1].style.backgroundColor = '#ff5555';
+
+      document.querySelectorAll('h3')[2].style.display = 'none';
+      document.querySelectorAll('h3')[3].style.display = 'none';
+
+      document.querySelector('#next').style.display = 'none';
+
+      document.querySelector('#reiniciar').style.display = 'block';
+    }
+    document.querySelector('#reiniciar').style.display = 'none';
+
+    function reiniciar(){
+      let resp = confirm('Deseja reiniciar o Quiz?')
+      if (resp){
+        window.location.href = "atividades/aula-06.28quiz.html";
+      }
+    }
 
   
       //document.querySelectorAll('h3')[1].innerHTML = quiz.pergunta[1];
