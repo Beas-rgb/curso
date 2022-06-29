@@ -63,6 +63,7 @@
     <div class="btn btn-primary" id="reiniciar" onclick="reiniciar()">
       Reiniciar
     </div>
+  </div>
 
 
     <script>
@@ -139,6 +140,7 @@
         return;
       }
       if(quizAtual == lsPertgunta.length - 1){
+        fimQuiz();
         return;
       } 
       carregarQuiz(++quizAtual);
@@ -163,8 +165,8 @@
 
     function reiniciar(){
       let resp = confirm('Deseja reiniciar o Quiz?')
-      if (resp){
-        window.location.href = "atividades/aula-06.28quiz.html";
+      if(resp){
+        window.location.href = "/atividades/aula-06.28quiz.html"
       }
     }
 
@@ -173,6 +175,6 @@
       //document.querySelectorAll('h3')[2].innerHTML = quiz.pergunta[2];
       //document.querySelectorAll('h3')[3].innerHTML = quiz.pergunta[3];
     </script>
-  </div>
+
 </body>
 </html>
