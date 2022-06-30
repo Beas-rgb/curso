@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Perguntas Quiz</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+  <style>
+    h2{
+      text-align: center;
+    }
+  </style>
+  
+  <div class="container">
+    <h2>Gerenciar Perguntas Quiz</h2>
+
+    <div id="alerta" class="alert col-sm-offset-2">
+    </div>
+
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pergunta">Pergunta:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="pergunta" placeholder="" name="pergunta" value="">
+          </div>
+        </div>
+
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for=opcao01>Opção 01:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id=opcao01 placeholder="" value="">
+            </div>
+          </div>
+
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for=opcao02>Opção 02:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id=opcao02 placeholder="" value="">
+              </div>
+            </div>
+
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for=opcao03>Opção 03:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id=opcao03 placeholder="" value="">
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for=opcao04>Opção 04:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id=opcao04 placeholder="" value="">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="">Opção Correta:</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline">
+                    <input type="radio" name="opcaoCorreta" value="1">Opção 01
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="opcaoCorreta" value="2">Opção 02
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="opcaoCorreta" value="3">Opção 03
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="opcaoCorreta" value="4">Opção 04
+                  </label>
+                </form>
+              </div>
+                </div>
+              </div>
+      
+      
+     
+       <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" onclick="gravar()" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function gravar() {
+      let lsInput = document.querySelectorAll('input');
+      let quiz = {resposta:["", "", "", ""]};
+      for(i in lsInput) {
+        if(i == 0){
+          quiz.pergunta = lsInput[i].value;
+        }
+        if(i >= 1 && i <= 4){
+          // verificar se as opções foram preenchidas para entrar no array
+          if(lsInput[i].value != ""){
+          quiz.resposta[i-1] = lsInput[i].value;
+        }
+      
+        if( i >= 5 && i <= 8){
+          if(lsInput[i].checked){
+            quiz.correta = i-5;
+          }
+        }
+      }
+    }
+
+      let msg = "";
+      // validae se o formulario/objeto quiz esta preenchido
+      if(quiz.pergunta == ""){
+        msg += "Necessário preencher a pergunta!<br>";
+      }
+      // validar se todas as opções de respostas foram preenchidas
+      if(quiz.resposta.length < 4){
+        msg += "Necessário preencher todas as opções de resposta!<br>";
+      }
+      // v se opção foi selecionando
+      if(quiz.correta == undefined){
+        msg += "Necessário selecionar a opção correta!<br>";
+      }
+
+      let alerta = document.querySelector("#alerta");
+      if(msg != ""){
+        alerta.innerHTML = msg;
+        alerta.classList.add("alert-danger");
+        return;
+      }else{
+        alerta.innerHTML = "Novo item do quiz adicionado!";
+        alerta.classList.remove("alert-danger");
+        alerta.classList.add("alert-success");
+      }
+
+      let baseQuiz = localStorage.getItem('baseQuiz');
+      baseQuiz = JSON.parse(baseQuiz);
+      baseQuiz.push(quiz);
+      localStorage.setItem('baseQuiz', JSON.stringify(baseQuiz));
+    }
+
+
+
+
+
+  </script>
+
+</body>
+</html>
