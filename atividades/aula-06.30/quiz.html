@@ -85,7 +85,8 @@
      
        <div class="form-group">        
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" onclick="gravar()" class="btn btn-default">Submit</button>
+          <button type="submit" onclick="gravar()" class="btn btn-default">Gravar</button>
+          <button type="submit" onclick="limparForm()" class="btn btn-default">Novo</button>
         </div>
       </div>
     </div>
@@ -94,7 +95,7 @@
   <script>
     function gravar() {
       let lsInput = document.querySelectorAll('input');
-      let quiz = {resposta:["", "", "", ""]};
+      let quiz = {resposta:[]};
       for(i in lsInput) {
         if(i == 0){
           quiz.pergunta = lsInput[i].value;
@@ -104,13 +105,12 @@
           if(lsInput[i].value != ""){
           quiz.resposta[i-1] = lsInput[i].value;
         }
-      
-        if( i >= 5 && i <= 8){
+      }
+      if( i >= 5 && i <= 8){
           if(lsInput[i].checked){
             quiz.correta = i-5;
           }
         }
-      }
     }
 
       let msg = "";
@@ -142,8 +142,20 @@
       baseQuiz = JSON.parse(baseQuiz);
       baseQuiz.push(quiz);
       localStorage.setItem('baseQuiz', JSON.stringify(baseQuiz));
+      limparForm();
     }
 
+    function limparForm(){
+      let lista = document.querySelectorAll('input')
+      for(i in lista){
+        if(i >= 0 && i <= 4 ){
+          lista[i].value = "";
+        }
+        if(i >= 5 && i <= 8 ){
+          lista[i].checked = false;
+      }
+   }
+  }
 
 
 

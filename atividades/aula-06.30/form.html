@@ -118,8 +118,9 @@
        }
       
       let quiz = {};
-
+      embaralharPerguntas();
       function carregarQuiz(nPergunta){
+        embaralharResposta(mPergunta);
         quiz = lsPertgunta[nPergunta];
         document.querySelector('h2').innerHTML = quiz.pergunta;
         for (let i = 0; i < 4; i++) {
@@ -166,14 +167,42 @@
     function reiniciar(){
       let resp = confirm('Deseja reiniciar o Quiz?')
       if(resp){
-        window.location.href = "/atividades/aula-06.28quiz.html"
+        //window.location.href = "/atividades/aula-06.30quiz.html"
+        window.location.replace("");
       }
     }
 
-  
-      //document.querySelectorAll('h3')[1].innerHTML = quiz.pergunta[1];
-      //document.querySelectorAll('h3')[2].innerHTML = quiz.pergunta[2];
-      //document.querySelectorAll('h3')[3].innerHTML = quiz.pergunta[3];
+    function embaralharPerguntas() {
+      let listaTemporaria = [];
+      let cont = 0;
+
+      while (lsPertgunta.length > 0){
+       let numSorteado = Math.trunc(Math.random() * lsPertgunta.length);
+       listaTemporaria[cont] = lsPertgunta.splice(numSorteado,1)[0];
+       cont++;
+      }
+      lsPertgunta = listaTemporaria;
+
+    }
+
+    function embaralharResposta() {
+      let listaTemporaria = [];
+      let quiz = lsPertgunta[nPergunta];
+      let cont = 0;
+      let lsResposta = quiz.resposta;
+      let opcaoCorreta = lsResposta[lsPertgunta[nPergunta].correta]
+      
+      while (lsResposta.length > 0){
+        let numSorteado = Math.trunc(Math.random() * lsResposta.length);
+        listaTemporaria[cont] = lsResposta.splice(numSorteado,1)[0];
+        if(opcaoCorreta == listaTemporaria[cont]){
+          quiz.correta = cont;
+        }
+        cont++;
+      }
+      quiz.resposta = listaTemporaria
+    }
+    
     </script>
 
 </body>
