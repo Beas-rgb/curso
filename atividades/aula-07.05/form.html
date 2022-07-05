@@ -13,6 +13,9 @@
     h2{
       text-align: center;
     }
+    #corpoTabela{
+      cursor: pointer;
+    }
   </style>
   
   <div class="container">
@@ -81,21 +84,80 @@
                 </div>
               </div>
       
-      
+              <input type="text" id="id" value="">
      
        <div class="form-group">        
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" onclick="gravar()" class="btn btn-default">Gravar</button>
           <button type="submit" onclick="limparForm()" class="btn btn-default">Novo</button>
+          <button type="submit" onclick="apagar()" class="btn btn-default">Apagar</button>
         </div>
       </div>
-    </div>
-  </div>
+    
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <td>
+            Pergunta 
+          </td>
+          
+          <td>
+            Resposta Correta 
+          </td>
+        </tr>
+      </thead>
+
+      <tbody id="corpoTabela">
+
+      </tbody>
+    </table>
+  
+</div>
 
   <script>
+
+    let baseQuiz = "";
+    atualizarTabela();
+    function atualizarTabela() {
+       baseQuiz = localStorage.getItem("baseQuiz");
+       baseQuiz = JSON.parse(baseQuiz)
+
+      let corpoTabela = "";
+      for( i in baseQuiz){
+        let pergunta = baseQuiz[i].pergunta;
+        let respostaCorreta = baseQuiz[i].resposta[baseQuiz[i].correta];
+        corpoTabela += `<tr onclick="editar(${i})" ><td>${pergunta}</td><td>${respostaCorreta}</td></tr>`
+      }
+       document.getElementById("corpoTabela").innerHTML = corpoTabela;
+
+    }
+
+
+    function editar(id){
+      let quiz = baseQuiz[id];
+      console.log(quiz)
+      document.getElementById("id").value = id;
+      document.getElementById("pergunta").value = quiz.pergunta;
+      document.getElementById("opcao01").value = quiz.resposta[0];
+      document.getElementById("opcao02").value = quiz.resposta[1];
+      document.getElementById("opcao03").value = quiz.resposta[2];
+      document.getElementById("opcao04").value = quiz.resposta[3];
+
+      let listaOpcao = document.getElementsByName("opcaoCorreta");
+      for(i in listaOpcao){
+        if(listaOpcao[i].value-1 == quiz.correta){
+          listaOpcao[i].checked = true;
+          break;
+        }
+      }
+      limparAlerta()
+    }
+
     function gravar() {
       let lsInput = document.querySelectorAll('input');
       let quiz = {resposta:[]};
+      let id = "";
       for(i in lsInput) {
         if(i == 0){
           quiz.pergunta = lsInput[i].value;
@@ -110,6 +172,9 @@
           if(lsInput[i].checked){
             quiz.correta = i-5;
           }
+        }
+        if(i == 9){
+          id = lsInput[i].value;
         }
     }
 
@@ -138,11 +203,14 @@
         alerta.classList.add("alert-success");
       }
 
-      let baseQuiz = localStorage.getItem('baseQuiz');
-      baseQuiz = JSON.parse(baseQuiz);
-      baseQuiz.push(quiz);
+      if(id == ""){
+        baseQuiz.push(quiz);
+      }else{
+        baseQuiz[id] = quiz;
+      }
       localStorage.setItem('baseQuiz', JSON.stringify(baseQuiz));
       limparForm();
+      atualizarTabela()
     }
 
     function limparForm(){
@@ -154,10 +222,29 @@
         if(i >= 5 && i <= 8 ){
           lista[i].checked = false;
       }
-   }
+      if(i >= 9){
+          lista[i].value = "";
+        }
+    }
+    limparAlerta()
   }
 
+   function limparAlerta(){
+     document.querySelector("#alerta").innerHTML = "";
+     document.querySelector("#alerta").classList.remove("alert-danger");
+     document.querySelector("#alerta").classList.remove("alert-success");
+   }
 
+   function apagar(){
+     let id = document.getElementById("id").value;
+     if(confirm("Tem certeza que quer apagar essa pergunta?")){
+       baseQuiz.splice(id,1);
+       localStorage.setItem('baseQuiz', JSON.stringify(baseQuiz));
+       limparForm();
+       atualizarTabela()
+     }
+
+   }
 
 
   </script>
