@@ -79,12 +79,12 @@
                 Questã 02:<span>Mostrar os números entre 2 valores
                     <a href="detalhes.html" target="_blank">detalhar</a></span>
             </h1>
-            <p id="">Resultado: Os número entre A e Z são (x,x,x,x,x).</p>
+            <p id="resultadoQ2">Resultado: Os número entre A e Z são (x,x,x,x,x).</p>
             <label for="">Valor 01:</label>
-            <input type="text" id="" />
+            <input type="text" id="valor1" />
             <label for="">Valor 02:</label>
-            <input type="text" id="" />
-            <input type="button" value="Executar" />
+            <input type="text" id="valor2" />
+            <input type="button" value="Executar" onclick="questaoQ2()"/>
         </div>
         <div class="questao">
             <h1>
@@ -169,7 +169,46 @@
             } while(cont <= 2);
         }
 
-        function questaoQ2(){}
+        function questaoQ2(){
+            let valor1 = document.getElementById('valor1').value;
+            valor1 = Number(valor1);
+            let valor2 = document.getElementById('valor2').value;
+            let resultado = `Resultado: Os número entre ${valor1} e ${valor2} são `;
+
+
+            //resolução 1
+            /*
+            if(valor1 > valor2){
+                let aux = valor1;
+                valor1 = valor2;
+                valor2 = aux;
+            }
+
+            while(valor1 <= valor2){
+                console.log(valor1);
+                resultado += valor1+",";
+                valor1++;
+            }*/
+
+            //resolução 2
+            if(valor1 > valor2){
+                while(valor1 >= valor2){
+                console.log(valor1);
+                resultado += valor1+",";
+                valor1--;
+              }
+            }else{
+                while(valor1 <= valor2){
+                console.log(valor1);
+                resultado += valor1+",";
+                valor1++;
+              }
+            }
+            document.getElementById("resultadoQ2").innerHTML = resultado;
+
+            
+            
+        }
 
 
 
