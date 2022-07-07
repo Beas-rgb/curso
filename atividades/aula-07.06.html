@@ -92,12 +92,12 @@
                     Lista armazenada
                     <a href="detalhes.html" target="_blank">detalhar</a></span>
             </h1>
-            <p id="">Resultado: A lista de itens é [xxxx,xxxx,xxxx,xxxxx]</p>
+            <p id="resultadoQ3">Resultado: A lista de itens é [xxxx,xxxx,xxxx,xxxxx]</p>
             <label for="">Item:</label>
-            <input type="text" id="" />
-            <input type="button" value="Add" />
-            <input type="button" value="Show" />
-            <input type="button" value="Clear" />
+            <input type="text" id="itemlista" />
+            <input type="button" value="Add" onclick="questaoQ3('add')"/>
+            <input type="button" value="Show" onclick="questaoQ3('show')"/>
+            <input type="button" value="Clear" onclick="questaoQ3('clear')"/>
         </div>
         <div class="questao">
             <h1>
@@ -205,11 +205,30 @@
               }
             }
             document.getElementById("resultadoQ2").innerHTML = resultado;
-
-            
-            
         }
 
+        let listaq3 = [];
+        function questaoQ3(botao){
+            switch (botao) {
+                case 'add':
+                    listaq3.push(document.getElementById("itemlista").value)
+                    console.log(listaq3);
+                    break;
+                
+                case 'show':
+                    document.getElementById("resultadoQ3").innerHTML = `Resultado: A lista de itens é [${listaq3}]`;
+                    break;
+            
+                case 'clear':
+                    listaq3 = [];
+                    document.getElementById("resultadoQ3").innerHTML = `Resultado: A lista de itens é [${listaq3}]`;
+                    break;
+                    
+                default:
+                    break;
+            }
+            document.getElementById("itemlista").value = "";
+        }
 
 
 
