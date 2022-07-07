@@ -113,20 +113,20 @@
                     Lista homens e mulheres
                     <a href="detalhes.html" target="_blank">detalhar</a></span>
             </h1>
-            <p id="">
+            <p id="resultadoQ5">
                 Resultado: <br />Lista de homens [xxxx,xxxx,xxxx,xxxxx] <br />Lista de
                 mulheres [xxxx,xxxx,xxxx,xxxxx]
             </p>
             <label for="">Nome:</label>
-            <input type="text" id="" />
+            <input type="text" id="nome" />
             <label for="">Sexo:</label>
-            <select name="sexo" id="">
+            <select name="sexo" id="sexo">
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
             </select>
-            <input type="button" value="Add" />
-            <input type="button" value="Show" />
-            <input type="button" value="Clear" />
+            <input type="button" value="Add" onclick="questaoQ5('add')"/>
+            <input type="button" value="Show" onclick="questaoQ5('show')"/>
+            <input type="button" value="Clear" onclick="questaoQ5('clear')"/>
         </div>
         <div class="questao">
             <h1>
@@ -240,6 +240,36 @@
             document.getElementById("resultadoQ4").innerHTML = resultado;
         }
 
+        let lista5 = [];
+        function questaoQ5(botao){
+            let pessoa = {};
+            pessoa.nome =  document.getElementById('nome').value;
+            pessoa.sexo =  document.getElementById('sexo').value;
+            
+            if(botao == 'add'){
+                lista5.push(pessoa);
+            }else if(botao == 'show'){
+                let m = "" , f = "";
+                for(p of lista5){
+                    if(p.sexo == 'M'){
+                        m += p.nome+',';
+                    }else{
+                        f += p.nome+',';
+                    }
+                }
+                resultado = `Resultado: <br />
+                Lista de homens [${m}] <br />
+                Lista de mulheres [${f}]`;
+                document.getElementById('resultadoQ5').innerHTML = resultado;
+            }else if(botao == 'clear'){
+                lista5 = [];
+                resultado = `Resultado: <br />
+                Lista de homens [] <br />
+                Lista de mulheres []`;
+                document.getElementById('resultadoQ5').innerHTML = resultado;
+            }
+            
+        }
 
 
     </script>
