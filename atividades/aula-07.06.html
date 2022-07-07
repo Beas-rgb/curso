@@ -104,8 +104,8 @@
                 Questã 04:<span>Mega SENA
                     <a href="detalhes.html" target="_blank">detalhar</a></span>
             </h1>
-            <p id="">Resultado:00,00,00,00,00,00</p>
-            <input type="button" value="Sortear!" />
+            <p id="resultadoQ4">Resultado:00,00,00,00,00,00</p>
+            <input type="button" value="Sortear!" onclick="questaoQ4()"/>
         </div>
         <div class="questao">
             <h1>
@@ -228,6 +228,16 @@
                     break;
             }
             document.getElementById("itemlista").value = "";
+        }
+
+        function questaoQ4(){
+            let resultado = "Resultado:";
+            for(cont = 1; cont <= 6; cont++) {
+               let nSorteado = Math.round(Math.random()*60);
+               resultado += nSorteado + ",";
+            }
+
+            document.getElementById("resultadoQ4").innerHTML = resultado;
         }
 
 
