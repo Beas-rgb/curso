@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,11 +70,10 @@
                 Questã 01:<span>Tabuada
                     <a href="detalhes.html" target="_blank">detalhar</a></span>
             </h1>
-            <input type="text" id="num" style="display: inline" />
-            <input type="button" onclick="tabuada()" value="Calcular" />
-            <p id="resposta">Resultado: <br>N x 1 = NX<br>N x 2 = NX<br>...<br>N x 10 = NX<br></p>
+            <input type="text" id="nuTabuada" style="display: inline" />
+            <input type="button" value="Calcular" onclick="questaoQ1()"/>
+            <p id="">Resultado: <br>N x 1 = NX<br>N x 2 = NX<br>...<br>N x 10 = NX<br></p>
         </div>
-
         <div class="questao">
             <h1>
                 Questã 02:<span>Mostrar os números entre 2 valores
@@ -147,10 +145,37 @@
         </div>
     </div>
 
+
     <script>
+        function questaoQ1(){
+            let nuTabuada = document.getElementById("nuTabuada").value;
 
-      
+            let cont = 1;
+
+            do{
+                console.log(`${nuTabuada} * ${cont} = ${nuTabuada * cont}`);
+                cont++;
+            } while(cont <= 10);
+
+
+
+
+
+            while(cont <= 2){
+                console.log('Dentro do LOOP' +cont);
+                cont++;
+            }
+
+            do{
+                //console.log('Dentro do LOOP' +cont);
+                cont++;
+            } while(cont <= 2);
+        }
+
+
+
+
     </script>
-</body>
 
-</html
+</body>
+</html>

@@ -89,7 +89,7 @@
        <div class="form-group">        
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" onclick="gravar()" class="btn btn-default">Gravar</button>
-          <button type="submit" onclick="limparForm()" class="btn btn-default">Novo</button>
+          <button type="submit" onclick="limparForm(); limparAlerta()" class="btn btn-default">Novo</button>
           <button type="submit" onclick="apagar()" class="btn btn-default">Apagar</button>
         </div>
       </div>
@@ -187,10 +187,17 @@
       if(quiz.resposta.length < 4){
         msg += "Necessário preencher todas as opções de resposta!<br>";
       }
-      // v se opção foi selecionando
+      if (verificaOpcaoRepetida(quiz)){
+        msg += "Existe uma opção repetida!<br>";
+      }
+
+
+
+      // validar se opção foi selecionando
       if(quiz.correta == undefined){
         msg += "Necessário selecionar a opção correta!<br>";
       }
+
 
       let alerta = document.querySelector("#alerta");
       if(msg != ""){
@@ -213,6 +220,17 @@
       atualizarTabela()
     }
 
+    function verificaOpcaoRepetida(quiz){
+      for(i=0; i<=2; i++){
+        for(j =  i+1 ; j <= 3 ; j++){
+          if(quiz.resposta[i] == quiz.resposta[j]){
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
     function limparForm(){
       let lista = document.querySelectorAll('input')
       for(i in lista){
@@ -226,7 +244,7 @@
           lista[i].value = "";
         }
     }
-    limparAlerta()
+    //limparAlerta()
   }
 
    function limparAlerta(){
@@ -237,13 +255,17 @@
 
    function apagar(){
      let id = document.getElementById("id").value;
+     if(id == "" ){
+       alerta.innerHTML = "Necessário selecionar uma pergunta!";
+       alerta.classList.remove("alert-danger");
+       return;
+     }
      if(confirm("Tem certeza que quer apagar essa pergunta?")){
        baseQuiz.splice(id,1);
        localStorage.setItem('baseQuiz', JSON.stringify(baseQuiz));
        limparForm();
        atualizarTabela()
      }
-
    }
 
 
