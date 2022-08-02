@@ -133,20 +133,43 @@
                 DESAFIOO!:<span>
                     Jo-Ken-Po <a href="detalhes.html" target="_blank">detalhar</a></span>
             </h1>
-            <p id="">Resultado: [Vitótio|Derrota|Empate]</p>
+            <p id="resultado06">Resultado: [Vitória|Derrota|Empate]</p>
             <span onmouseover="this.style.fontSize = '50px'" onmouseout="this.style.fontSize = '30px'"
-                class="mao">✊🏽</span>
+                class="mao" onclick="desafio('✊🏽')">✊🏽</span>
             <span onmouseover="this.style.fontSize = '50px'" onmouseout="this.style.fontSize = '30px'"
-                class="mao">🖐🏽</span>
+                class="mao" onclick="desafio('🖐🏽')">🖐🏽</span>
             <span onmouseover="this.style.fontSize = '50px'" onmouseout="this.style.fontSize = '30px'"
-                class="mao">✌🏽</span>
+                class="mao" onclick="desafio('✌🏽')">✌🏽</span>
             #
-            <span class="adversario">👋🏽</span>
+            <span id="adversario" class="adversario">👋🏽</span>
         </div>
     </div>
 
 
     <script>
+          function desafio(mao){
+            console.log(mao);
+            let nSorteado = Math.round(Math.random() * 2);
+            let adversario = ['✊🏽','🖐🏽','✌🏽'];
+            let comp = adversario[nSorteado];
+            let resultado = "";
+            if(mao == comp){
+                resultado += 'Empate'
+            }else if(
+                (mao == '✊🏽' && comp == '✌🏽') 
+                (mao == '🖐🏽' && comp == '✊🏽') 
+                (mao == '✌🏽' && comp == '🖐🏽') 
+            ){
+                resultado += 'Vitória';
+            }else{
+                resultado += 'Derrota'
+            }
+            document.getElementById('adversario').innerHTML = comp;
+            document.getElementById('resultado06').innerHTML = `Resultado: [${resultado}]`;
+          }
+
+
+
         function questaoQ1(){
             let nuTabuada = document.getElementById("nuTabuada").value;
 
@@ -268,8 +291,9 @@
                 Lista de mulheres []`;
                 document.getElementById('resultadoQ5').innerHTML = resultado;
             }
-            
         }
+        
+        function desafio(mao){}
 
 
     </script>
