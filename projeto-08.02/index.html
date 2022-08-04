@@ -7,13 +7,15 @@
     <title>Loja de bolos</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/estilo.css" />
+    <script src="js/script.js"></script>
   </head>
   <body>
     <h1>Loja de bolos (Nome da loja)</h1>
 
-    <div id="listaProdutos">
+    <div id="listaProduto">
+      
       <div class="embrulho">
-        <div class="produtos">
+        <div class="produtos" style="display: none">
           <img src="img/doces-de-casamento-1.jpg" alt="" />
           <p>
             Nome do produto
@@ -22,28 +24,7 @@
           <i class="material-icons" onclick="addProdutoCarrinho()" >&#xe8cc;</i>
         </div>
       </div>
-
-      <div class="embrulho">
-        <div class="produtos">
-          <img src="img/doces-de-casamento-1.jpg" alt="" />
-          <p>
-            Nome do produto
-            <span class="valor">20,00</span>
-          </p>
-          <i class="material-icons" onclick="addProdutoCarrinho()" >&#xe8cc;</i>
-        </div>
-      </div>
-
-      <div class="embrulho">
-        <div class="produtos">
-          <img src="img/doces-de-casamento-1.jpg" alt="" />
-          <p>
-            Nome do produto
-            <span class="valor">20,00</span>
-          </p>
-          <i class="material-icons" onclick="addProdutoCarrinho()" >&#xe8cc;</i>
-        </div>
-      </div>
+      
     </div>
   </body>
 </html>
