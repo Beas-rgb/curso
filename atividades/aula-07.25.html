@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Unidade Geograficas</h1>
+
+  <label for="">Região:</label>
+  <select name="ls-nome" id="ls-regiao" onchange="BuscarUf(this.value)">
+    <option value="">Selecione</option>
+  </select>
+
+  <br>
+
+  <label for="">Estado:</label>
+  <select name="ls-uf" id="ls-uf" onchange="BuscaMu(this.value)">
+    <option value="">Selecione</option>
+  </select>
+
+  <br>
+
+  <label for="">Município:</label>
+  <select name="ls-mu" id="ls-mu">
+    <option value="">Selecione</option>
+  </select>
+  
+  <br>
+    <h1>Form endereço auto complet via api cep</h1>
+   <br>
+
+  <label for="cep">Cep:</label><input type="text" id="cep" onblur="buscarEndereco(this.value)">
+  
+  <br>
+
+  <label for="endereco-completo">Endereco Completo:</label><input type="text" id="endereco-completo">
+
+  <script>
+    // declarado
+    var xhttp = new XMLHttpRequest();
+    // conficurado
+    xhttp.open("GET" , "https://servicodados.ibge.gov.br/api/v1/localidades/regioes");
+    // ativado 
+    xhttp.send();
+    // trabalhar com o retorno
+    xhttp.onload = function() {
+      //console.log(this.response);
+      carregarRegiao(this.response);
+    }
+
+    /* criar um função que vai
+      converter uma String em Array de JSON
+      usar um laço de repetição para criar as <option> e incluir no <select>
+    */
+    function carregarRegiao(lsRegiao){
+      lsRegiao = JSON.parse(lsRegiao);
+      let lsOption = "<option value=''>Selecione</option>";
+      //console.log(lsRegiao);
+      for (const r of lsRegiao) {
+        //console.log(r);
+        lsOption += `<option value="${r.id}">${r.nome}</option>`
+      }
+      document.getElementById('ls-regiao').innerHTML = lsOption
+      BuscarUf("");
+    }
+
+    function BuscarUf(idRegiao){
+      if(idRegiao == ""){
+        xhttp.open('GET',`https://servicodados.ibge.gov.br/api/v1/localidades/estados`);
+      }else{
+        xhttp.open('GET',`https://servicodados.ibge.gov.br/api/v1/localidades/regioes/${idRegiao}/estados`);
+      }
+      
+      xhttp.send();
+      xhttp.onload = function() {
+        let lsUf = this.response;
+        lsUf = JSON.parse(lsUf);
+        let lsOption = "<option value=''>Selecione</option>";
+        for (const ls of lsUf) {
+          lsOption += `<option value="${ls.id}">${ls.sigla} - ${ls.nome}</option>`;
+        }
+        document.getElementById('ls-uf').innerHTML = lsOption;
+      }
+    }
+
+    function BuscaMu(nameRegiao){
+      xhttp.open("GET", `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${nameRegiao}/municipios`);
+      xhttp.send();
+      xhttp.onload = function(){
+        let lsMu = this.response;
+        lsMu = JSON.parse(lsMu);
+        let lsOption = "";
+        for (const ls of lsMu) {
+          lsOption += `<option value="${ls.id}">${ls.nome}</option>`;
+        }
+        document.getElementById('ls-mu').innerHTML = lsOption;
+      }
+    }
+
+    // cep
+    function buscarEndereco(cep){
+      xhttp.open("GET" , `https://viacep.com.br/ws/${cep}/json/`);
+      xhttp.send();
+      xhttp.onload = function() {
+        let obj = this.response;
+        obj = JSON.parse(obj);
+        document.getElementById("endereco-completo").value = `${obj.logradouro}, ${obj.complemento}, ${obj.bairro}`;
+      }
+    }
+  </script>
+</body>
+</html>
