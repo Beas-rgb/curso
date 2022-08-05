@@ -17,7 +17,7 @@ h1{
   text-shadow: 2px 2px 4px #000000;
 }
 
-.material-icons{
+.carrinho{
   color: #0000007d;
   position: absolute;
   right: -13px;
@@ -26,7 +26,19 @@ h1{
   cursor: pointer;
 }
 
-.material-icons:hover{
+.carrinho:hover{
+  color: #e66b6b;
+}
+
+#carrinho-principal{
+  font-size: 60px;
+  color: #000000;
+  cursor: pointer;
+  padding-left: 80px;
+  float: right;
+}
+
+#carrinho-principal:hover{
   color: #e66b6b;
 }
 
