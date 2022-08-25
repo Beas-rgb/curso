@@ -4,9 +4,9 @@ body{
 
 img{
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
-  border: #e66b6b solid 2px
+  height: 100px;
+  width: 100px;
+  border: #e66b6b solid 2px;
 }
 
 h1{
@@ -17,33 +17,7 @@ h1{
   text-shadow: 2px 2px 4px #000000;
 }
 
-.carrinho{
-  color: #0000007d;
-  position: absolute;
-  right: -13px;
-  bottom: 24px;
-  font-size: 42px;
-  cursor: pointer;
-}
-
-.carrinho:hover{
-  color: #e66b6b;
-}
-
-#carrinho-principal{
-  font-size: 60px;
-  color: #000000;
-  cursor: pointer;
-  padding-left: 80px;
-  float: right;
-}
-
-#carrinho-principal:hover{
-  color: #e66b6b;
-}
-
-
-.produtos {
+.produto{
   position: relative;
   width: 500px;
   margin-top: 20px;
@@ -58,14 +32,14 @@ p{
   background-color: #f7eaef;
   position: absolute;
   top: -8px;
-  left: 90px;
-  width:80%;
-  height: 93px;
+  left: 70px;
+  width: 80%;
+  height: 77px;
   z-index: -1;
   padding-left: 45px;
   padding-top: 10px;
   border-radius: 2%;
-  border: #e66b6b solid 2px;
+  border: #e66b6b solid 1px;
   font-family: 'Lucida Handwriting';
 }
 
@@ -76,6 +50,30 @@ p{
   background-color: #0000007d;
   color: white;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
   font-family: "Lucida Console";
+}
+
+.carrinho{
+  color: #0000007d;
+  position: absolute;
+  right: 3px;
+  bottom: 16px;
+  font-size: 41px;
+  cursor: pointer;
+}
+
+.carrinho:hover{
+  color: #e66b6b;
+}
+
+#carrinho-principal{
+  font-size: 60px;
+  color: #000000;
+  cursor: pointer;
+  padding-left: 80px;
+}
+
+#carrinho-principal:hover{
+  color: #e66b6b;
 }
