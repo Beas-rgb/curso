@@ -8,6 +8,7 @@ function buscarProduto(){
     lsProduto = this.response;
     lsProduto = JSON.parse(lsProduto);
     montarListaProdutosHtml(lsProduto);
+    marcaProdutosSelecionadoLocalStorage();
   }
 }
 
@@ -31,6 +32,16 @@ function montarListaProdutosHtml(lsProduto){
   document.getElementById("listaProduto").innerHTML = listaProduto;
 }
 
+function marcaProdutosSelecionadoLocalStorage() {
+  let lista = localStorage.getItem("listaProdutoLocalStorage");
+  lista = JSON.parse(lista);
+  for ( i in lista) {
+    if(lista[i].carrinho){
+      addProdutoCarrinho(i);
+    }
+  }
+}
+
 function addProdutoCarrinho(i){
   let produto = lsProduto[i];
   if(produto.carrinho == false){
@@ -40,6 +51,7 @@ function addProdutoCarrinho(i){
     produto.carrinho = false;
     document.getElementsByClassName("carrinho")[i].style.color = "#0000007d";
   }
+  localStorage.setItem("listaProdutoLocalStorage",JSON.stringify(lsProduto));
 }
 
 function verListaProdutosSelecionados(){
