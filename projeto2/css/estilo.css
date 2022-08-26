@@ -77,3 +77,27 @@ p{
 #carrinho-principal:hover{
   color: #e66b6b;
 }
+
+.btMaisMenos{
+  position: absolute;
+  right: -5px;
+  bottom: 17px;
+}
+
+.btMais, .btMenos{
+  cursor: pointer;
+  color: #e66b6b;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 5px;
+}
+
+.quantidade{
+    position: absolute;
+    right: -81px;
+    bottom: 25px;
+    background-color: #e66b6b;
+    padding: 20px;
+    border-radius: 60%;
+    font-size: 20px;
+}
