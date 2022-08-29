@@ -101,3 +101,28 @@ p{
     border-radius: 60%;
     font-size: 20px;
 }
+
+#formulario{
+  display: grid;
+  place-items: center;
+}
+
+label{
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+input{
+  width: 500px;
+  height: 20px;
+  margin-top: 3px;
+  border: #e66b6b solid;
+}
+
+#btFinalizar{
+  background-color: #e66b6b;
+  border: none;
+  margin-top: 10px;
+  padding: 6px;
+  cursor: pointer;
+}
